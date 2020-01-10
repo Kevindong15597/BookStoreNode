@@ -7,7 +7,13 @@ const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const mongoose  = require('mongoose')
+
+
 const indexRouter = require('./routes/index')
+const authorRouter = require('./routes/authors')
+
+
+
 
 app.set('view engine','ejs')
 app.set('views', __dirname +'/views')
@@ -28,5 +34,7 @@ app.use(express.static('public'))
 
 
 app.use('/', indexRouter)
+app.use('/authors', authorRouter)
+
 
 app.listen(process.env.PORT ||3000)
