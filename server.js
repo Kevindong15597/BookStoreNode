@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const mongoose  = require('mongoose')
-
+const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
@@ -32,7 +32,7 @@ db.once('open', () => console.log('Connected to mongoose'));
 app.use(expressLayouts)
 app.use(express.static('public'))
 
-
+app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
 app.use('/', indexRouter)
 app.use('/authors', authorRouter)
 
